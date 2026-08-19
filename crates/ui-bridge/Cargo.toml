@@ -1,0 +1,38 @@
+[package]
+name = "ui-bridge"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+abi-ui.workspace = true
+bevy = { workspace = true }
+render = { path = "../render" }
+ui = { path = "../ui" }
+gpu.workspace = true
+# Disable unrelated Bevy facade features.
+bevy_color = { version = "=0.19.0", default-features = false }
+smallvec = "1.15.2"
+# Pin swash to Bevy Text's resolved outline API.
+swash = "=0.2.9"
+text = { path = "../text" }
+parley = "0.9.0"
+
+[dev-dependencies]
+bytemuck = { workspace = true }
+widgets = { path = "../widgets" }
+
+# winit needs the process main thread; disable its harness.
+[[test]]
+name = "ui_extract"
+harness = false
+
+[[test]]
+name = "text_extract"
+harness = false
+
+[[test]]
+name = "icon_extract"
+harness = false
+
+[lints]
+workspace = true

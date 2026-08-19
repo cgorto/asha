@@ -1,0 +1,13 @@
+[package]
+name = "ui"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+abi-core.workspace = true
+abi-ui.workspace = true
+asha-assets.workspace = true
+gpu.workspace = true
+
+[lints]
+workspace = true

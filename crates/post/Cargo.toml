@@ -1,0 +1,17 @@
+[package]
+name = "post"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+abi-core.workspace = true
+abi-light.workspace = true
+abi-post.workspace = true
+asha-assets.workspace = true
+gpu.workspace = true
+
+[dev-dependencies]
+bytemuck.workspace = true
+
+[lints]
+workspace = true

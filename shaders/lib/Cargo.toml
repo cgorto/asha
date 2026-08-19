@@ -1,0 +1,19 @@
+[package]
+name = "asha-shaders"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+abi-bake = { path = "../../crates/abi/bake" }
+abi-core = { path = "../../crates/abi/core" }
+abi-gizmo = { path = "../../crates/abi/gizmo" }
+abi-light = { path = "../../crates/abi/light" }
+abi-mesh = { path = "../../crates/abi/mesh" }
+abi-particles = { path = "../../crates/abi/particles" }
+abi-post = { path = "../../crates/abi/post" }
+abi-ui = { path = "../../crates/abi/ui" }
+spirv-std.workspace = true
+glam.workspace = true
+
+[lints]
+workspace = true

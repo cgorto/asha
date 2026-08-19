@@ -1,0 +1,14 @@
+[package]
+name = "particles"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+abi-core.workspace = true
+abi-particles.workspace = true
+asha-assets.workspace = true
+gpu.workspace = true
+mesh = { path = "../mesh" }
+
+[lints]
+workspace = true

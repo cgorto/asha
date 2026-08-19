@@ -1,0 +1,14 @@
+# Shader workspace pinned to the rust-gpu toolchain.
+[workspace]
+resolver = "2"
+members = ["lib", "builder"]
+
+[workspace.dependencies]
+# The compiler fork and toolchain revision must remain synchronized.
+spirv-std = { git = "https://github.com/cgorto/rust-gpu", rev = "a13e7386da8a3b3b71e2fc7a5e3f91ecf7a88f7b" }
+# Pin glam so vector traits match the ABI version.
+glam = { version = "=0.32.1", default-features = false, features = ["libm"] }
+spirv-builder = { git = "https://github.com/cgorto/rust-gpu", rev = "a13e7386da8a3b3b71e2fc7a5e3f91ecf7a88f7b", default-features = false, features = ["use-installed-tools"] }
+
+[workspace.lints.rust]
+unexpected_cfgs = { level = "warn", check-cfg = ["cfg(target_arch, values(\"spirv\"))"] }

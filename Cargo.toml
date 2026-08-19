@@ -1,0 +1,81 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/abi/bake",
+    "crates/abi/core",
+    "crates/abi/gizmo",
+    "crates/abi/light",
+    "crates/abi/macros",
+    "crates/abi/mesh",
+    "crates/abi/particles",
+    "crates/abi/post",
+    "crates/abi/ui",
+    "crates/app",
+    "crates/assets",
+    "crates/particles",
+    "crates/mesh-bridge",
+    "crates/mesh",
+    "crates/post",
+    "crates/ui-bridge",
+    "crates/render",
+    "crates/widgets",
+    "crates/shader-tests",
+    "crates/text",
+    "crates/ui",
+]
+exclude = ["shaders"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+
+# Register the SPIR-V target cfg for stable host builds.
+[workspace.lints.rust]
+unexpected_cfgs = { level = "warn", check-cfg = ['cfg(target_arch, values("spirv"))'] }
+
+[workspace.dependencies]
+abi-bake = { path = "crates/abi/bake" }
+abi-core = { path = "crates/abi/core" }
+abi-gizmo = { path = "crates/abi/gizmo" }
+abi-light = { path = "crates/abi/light" }
+abi-mesh = { path = "crates/abi/mesh" }
+abi-particles = { path = "crates/abi/particles" }
+abi-post = { path = "crates/abi/post" }
+abi-ui = { path = "crates/abi/ui" }
+asha-assets = { path = "crates/assets" }
+gpu = { git = "https://tangled.org/git.gorto.xyz/gpu", rev = "c20b735f699a738149027d861b743fe5cb056660" }
+gpu-ptr = { git = "https://tangled.org/git.gorto.xyz/gpu", rev = "c20b735f699a738149027d861b743fe5cb056660" }
+ash = "0.38"
+raw-window-handle = "0.6"
+bitflags = "2"
+bytemuck = { version = "1", features = ["derive"] }
+# Fixed-parameter meshlet clustering.
+meshopt = "0.6.2"
+# Exact pin preserves CWBVH node semantics in GPU ABI.
+obvhs = { version = "=0.3.2", default-features = false }
+# Bevy features exclude rendering, wgpu, and naga.
+bevy = { version = "=0.19.0", default-features = false, features = [
+    "default_app",     # Core app, assets, logging, state, reflection.
+    "std",
+    "multi_threaded",
+    "bevy_winit",
+    "bevy_window",
+    "x11",
+    "wayland",
+    "keyboard",
+    "mouse",
+    "gamepad",     # Gamepad input and event processing.
+    "bevy_gilrs",  # Gamepad hardware backend.
+
+    "bevy_scene",      # Scene data without legacy scene bundles.
+    "serialize",
+
+    "bevy_mesh",       # Mesh types without Bevy rendering.
+    "bevy_ui",         # UI layout without Bevy rendering.
+    "bevy_text",       # Text shaping and editing without rendering.
+    "bevy_sprite",     # Texture slicing types required by Bevy UI.
+    "bevy_camera",     # Camera types without rendering.
+    "bevy_input_focus", # Widget focus and tab navigation.
+    "bevy_picking",    # Widget pointer events.
+    "png",             # CPU PNG decoding for embedded icons.
+] }

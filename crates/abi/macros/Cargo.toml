@@ -1,0 +1,12 @@
+[package]
+name = "abi-macros"
+version.workspace = true
+edition.workspace = true
+
+# Proc macros stay host-only and dependency-free.
+
+[lib]
+proc-macro = true
+
+[lints]
+workspace = true

@@ -1,0 +1,76 @@
+[package]
+name = "widgets"
+version.workspace = true
+edition.workspace = true
+description = "A collection of UI widgets for building editors and utilities in Bevy"
+homepage = "https://bevy.org"
+repository = "https://github.com/bevyengine/bevy"
+license = "MIT OR Apache-2.0"
+keywords = ["bevy"]
+
+[dependencies]
+bevy_a11y = { version = "=0.19.0", default-features = false }
+bevy_app = { version = "=0.19.0", default-features = false }
+bevy_asset = { version = "=0.19.0", default-features = false }
+bevy_camera = { version = "=0.19.0", default-features = false }
+bevy_color = { version = "=0.19.0", default-features = false }
+bevy_ui_widgets = { version = "=0.19.0", default-features = false }
+bevy_ecs = { version = "=0.19.0", default-features = false }
+bevy_input = { version = "=0.19.0", default-features = false }
+bevy_input_focus = { version = "=0.19.0", default-features = false }
+bevy_log = { version = "=0.19.0", default-features = false }
+bevy_math = { version = "=0.19.0", default-features = false }
+bevy_picking = { version = "=0.19.0", default-features = false }
+bevy_platform = { version = "=0.19.0", default-features = false }
+bevy_reflect = { version = "=0.19.0", default-features = false }
+bevy_scene = { version = "=0.19.0", default-features = false }
+bevy_text = { version = "=0.19.0", default-features = false }
+bevy_ui = { version = "=0.19.0", default-features = false, features = [
+  "bevy_picking",
+] }
+bevy_window = { version = "=0.19.0", default-features = false }
+bevy_derive = { version = "=0.19.0", default-features = false }
+smol_str = { version = "0.2", default-features = false }
+
+accesskit = "0.24"
+
+# Optional color-tool material bridge.
+ui-bridge = { path = "../ui-bridge", optional = true }
+
+# Reciprocal dev-dependencies support seam tests without library cycles.
+[dev-dependencies]
+bevy = { workspace = true }
+ui-bridge = { path = "../ui-bridge" }
+ui = { path = "../ui" }
+text = { path = "../text" }
+render = { path = "../render" }
+gpu.workspace = true
+abi-core.workspace = true
+abi-ui.workspace = true
+
+[features]
+default = []
+custom_cursor = ["bevy_window/custom_cursor"]
+webgl = []
+webgpu = []
+# Color tools use the optional UI bridge.
+color-tools = ["dep:ui-bridge"]
+
+[lints]
+workspace = true
+
+[[example]]
+name = "feathers_gallery"
+required-features = ["color-tools"]
+
+[[test]]
+name = "color_tools"
+required-features = ["color-tools"]
+
+[package.metadata.docs.rs]
+rustdoc-args = [
+  "-Zunstable-options",
+  "--generate-link-to-definition",
+  "--generate-macro-expansion",
+]
+all-features = true

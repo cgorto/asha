@@ -1,0 +1,18 @@
+# Hardware tests for compiled shader entry points.
+[package]
+name = "shader-tests"
+version.workspace = true
+edition.workspace = true
+
+[dev-dependencies]
+asha-assets.workspace = true
+gpu = { workspace = true, features = ["dump"] }
+png = "0.17"
+abi-core.workspace = true
+abi-light.workspace = true
+abi-post.workspace = true
+app = { path = "../app" }
+winit = "0.30.13"
+
+[lints]
+workspace = true

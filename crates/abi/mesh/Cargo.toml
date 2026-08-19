@@ -1,0 +1,28 @@
+[package]
+name = "abi-mesh"
+version.workspace = true
+edition.workspace = true
+
+# Compiles for host and SPIR-V; remains GPU-legal and allocation-free.
+
+[features]
+# Bevy component derives remain host-only through target gating.
+bevy = ["dep:bevy_ecs"]
+
+[dependencies]
+abi-core = { path = "../core" }
+
+[target.'cfg(target_arch = "spirv")'.dependencies]
+# Keep glam aligned with the shader ABI vocabulary.
+glam = { version = "=0.32.1", default-features = false, features = ["libm"] }
+# Match pinned spirv-std source for the shader PhysicalPtr ABI.
+spirv-std = { git = "https://github.com/cgorto/rust-gpu", rev = "a13e7386da8a3b3b71e2fc7a5e3f91ecf7a88f7b" }
+
+[target.'cfg(not(target_arch = "spirv"))'.dependencies]
+# Host derives require glam's bytemuck feature.
+glam = { version = "=0.32.1", default-features = false, features = ["bytemuck", "libm"] }
+bytemuck = { version = "1", features = ["derive"] }
+bevy_ecs = { version = "=0.19.0", optional = true }
+
+[lints]
+workspace = true

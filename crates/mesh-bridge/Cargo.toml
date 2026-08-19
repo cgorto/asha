@@ -1,0 +1,20 @@
+[package]
+name = "mesh-bridge"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+abi-mesh.workspace = true
+abi-core.workspace = true
+gpu.workspace = true
+mesh = { path = "../mesh" }
+render = { path = "../render" }
+bytemuck.workspace = true
+
+[lints]
+workspace = true
+
+[dev-dependencies]
+abi-core.workspace = true
+abi-light.workspace = true
+bevy = { workspace = true }

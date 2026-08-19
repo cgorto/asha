@@ -1,0 +1,12 @@
+[package]
+name = "text"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+abi-ui.workspace = true
+asha-assets.workspace = true
+gpu.workspace = true
+
+[lints]
+workspace = true

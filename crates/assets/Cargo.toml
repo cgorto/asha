@@ -1,0 +1,10 @@
+[package]
+name = "asha-assets"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+gpu.workspace = true
+
+[lints]
+workspace = true

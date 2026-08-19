@@ -1,0 +1,21 @@
+[package]
+name = "mesh"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+abi-mesh.workspace = true
+abi-light.workspace = true
+abi-core.workspace = true
+asha-assets.workspace = true
+gpu.workspace = true
+bytemuck.workspace = true
+# Meshlet clustering uses fixed 64/124/0.5 parameters.
+meshopt.workspace = true
+obvhs.workspace = true
+
+[lints]
+workspace = true
+
+[dev-dependencies]
+abi-core.workspace = true
